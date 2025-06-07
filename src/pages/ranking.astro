@@ -1,4 +1,5 @@
 ---
+import HeaderCourse from "../components/HeaderCourse.astro"
 import RankingItem from "../components/RankingItem.astro"
 import Layout from "../layouts/Layout.astro"
 import { Icon } from "astro-icon/components"
@@ -6,76 +7,77 @@ import { Icon } from "astro-icon/components"
 ---
 
 <Layout>
-  <main class="flex flex-row w-full px-8 first-of-type:pt-4 gap-4">
-    <section class="relative flex flex-col flex-[70%] rounded-md bg-[url('/ranking-bg.png')] bg-contain bg-center overflow-hidden">
-      <div class="absolute inset-0 bg-blue-100/40 pointer-events-none z-0"></div>
-        <div class="relative z-10">
-          <div class="flex items-center justify-center p-8 rounded-t-md bg-[rgb(42,50,71)]">
-          <h1 class="text-4xl font-bold text-white">Ranking UTP</h1>
-          </div>
-          <div class="flex flex-col gap-2 py-4 px-4">
-            <RankingItem position={1} name="Leonardo Torres" points={120} />
-            <RankingItem position={2} name="Maria Lopez" points={115} />
-            <RankingItem position={3} name="Carlos Perez" points={110} />
-            <RankingItem position={4} name="Ana Garcia" points={105} />
-            <RankingItem position={5} name="Luis Fernandez" points={100} />
-            <RankingItem position={6} name="Sofia Martinez" points={95} />
-            <RankingItem position={7} name="Javier Sanchez" points={90} />
-            <RankingItem position={8} name="Laura Ramirez" points={85} />
-            <RankingItem position={9} name="Diego Torres" points={80} />
-            <RankingItem position={10} name="Valeria Gomez" points={75} />
-        </div>
-      </div>
-    </section>
-    <section class="relative flex-[30%]">
-      <div class="sticky xl:flex flex-col flex-1/3 bg-white rounded-md top-0 z-10">
-        <div class="flex w-full items-center justify-center p-[36px] rounded-t-md bg-[rgb(42,50,71)]">
-          <h1 class="text-2xl font-bold text-white">Alumno XYZ</h1>
-        </div>
-        <div class="flex flex-col items-center w-full py-6 gap-6">
-          <div class="w-40 h-40">
-            <Icon name="Student" class="w-full h-full" />
-          </div>
-          <div class="flex flex-col gap-4 w-full px-4">
-            <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
-              <div class="flex items-center justify-center">
-                <Icon name="Coins" class="h-6" />
-              </div>
-              <span class="font-semibold">Total de puntos:</span>
-              <span class="font-bold">88</span>
-            </div>
-            <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
-              <div class="flex items-center justify-center">
-                <Icon name="GraduationCap" class="h-6" />
-              </div>
-              <span class="font-semibold">Carrera:</span>
-              <span>Ing. de Sistemas</span>
-            </div>
-            <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
-              <div class="flex items-center justify-center">
-                <Icon name="Progress" class="h-4" />
-              </div>
-              <span class="font-semibold">Ciclo:</span>
-              <span>6°</span>
-            </div>
-            <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
-              <div class="flex items-center justify-center">
-                <Icon name="Medal" class="h-6" />
-              </div>
-              <span class="font-semibold">Medallas:</span>
-              <span>3</span>
-            </div>
-            <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
-              <div class="flex items-center justify-center">
-                <Icon name="Position" class="h-8" />
-              </div>
-              <span class="font-semibold">Posición en ranking:</span>
-              <span class="font-bold">1</span>
-            </div>
+  <main class="w-full px-8 pb-8">
+    <HeaderCourse />
+    <div class="pt-4"><h1 class="font-bold text-xl">Ranking de Alumnos</h1></div>
+    <div class="flex flex-row w-full pt-4 first-of-type:pt-4 gap-4">
+      <section class="relative flex flex-col flex-[70%] rounded-md bg-[url('/ranking-bg.png')] bg-contain bg-center overflow-hidden">
+        <div class="absolute inset-0 bg-blue-100/40 pointer-events-none z-0"></div>
+          <div class="relative z-10">
+            <div class="flex flex-col gap-2 py-4 px-4">
+              <RankingItem position={1} name="Leonardo Torres" points={120} />
+              <RankingItem position={2} name="Maria Lopez" points={115} />
+              <RankingItem position={3} name="Carlos Perez" points={110} />
+              <RankingItem position={4} name="Ana Garcia" points={105} />
+              <RankingItem position={5} name="Luis Fernandez" points={100} />
+              <RankingItem position={6} name="Sofia Martinez" points={95} />
+              <RankingItem position={7} name="Javier Sanchez" points={90} />
+              <RankingItem position={8} name="Laura Ramirez" points={85} />
+              <RankingItem position={9} name="Diego Torres" points={80} />
+              <RankingItem position={10} name="Valeria Gomez" points={75} />
           </div>
         </div>
-      </div>
-      
-    </section>
+      </section>
+      <section class="relative flex-[30%]">
+        <div class="sticky xl:flex flex-col flex-1/3 bg-white rounded-md top-0 z-10">
+          <div class="flex w-full items-center justify-center py-6 rounded-t-md bg-[rgb(42,50,71)]">
+            <h1 class="text-2xl font-bold text-white">Alumno XYZ</h1>
+          </div>
+          <div class="flex flex-col items-center w-full py-6 gap-6">
+            <div class="w-40 h-40">
+              <Icon name="Student" class="w-full h-full" />
+            </div>
+            <div class="flex flex-col gap-4 w-full px-4">
+              <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
+                <div class="flex items-center justify-center">
+                  <Icon name="Coins" class="h-6" />
+                </div>
+                <span class="font-semibold">Total de puntos:</span>
+                <span class="font-bold">88</span>
+              </div>
+              <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
+                <div class="flex items-center justify-center">
+                  <Icon name="GraduationCap" class="h-6" />
+                </div>
+                <span class="font-semibold">Carrera:</span>
+                <span>Ing. de Sistemas</span>
+              </div>
+              <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
+                <div class="flex items-center justify-center">
+                  <Icon name="Progress" class="h-4" />
+                </div>
+                <span class="font-semibold">Ciclo:</span>
+                <span>6°</span>
+              </div>
+              <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
+                <div class="flex items-center justify-center">
+                  <Icon name="Medal" class="h-6" />
+                </div>
+                <span class="font-semibold">Medallas:</span>
+                <span>3</span>
+              </div>
+              <div class="flex justify-start gap-2 text-lg bg-[#f2f9ff] shadow-gray-200 shadow-xs px-6 py-3 rounded sm">
+                <div class="flex items-center justify-center">
+                  <Icon name="Position" class="h-8" />
+                </div>
+                <span class="font-semibold">Posición en ranking:</span>
+                <span class="font-bold">1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </section>
+    </div>
   </main>
 </Layout>
