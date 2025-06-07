@@ -1,0 +1,26 @@
+---
+import WeekActivity from './WeekActivity.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<div class="flex flex-col w-full lg:min-w-sm 2xl:min-w-lg lg:col-start-3 lg:col-end-4 lg:row-start-1">
+
+  <div class="flex flex-row items-center justify-between bg-[rgb(42,50,71)] shadow-[rgba(0,0,0,0.4)] shadow-md text-white font-bold 
+              w-full px-6 py-[11px] rounded-md lg:justify-start lg:rounded-none lg:rounded-tl lg:rounded-tr lg:gap-6 lg:shadow-none">
+    <div class="hidden w-8 h-full lg:block cursor-pointer">
+      <Icon name="WA-Icon" />
+    </div>
+    <p>Actividades Semanales</p>
+    <div class="block w-6 lg:hidden">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#ffffff"></path> </g></svg>
+    </div>
+  </div>
+  <div class="hidden lg:flex flex-col p-4 bg-white h-full rounded-bl rounded-br gap-2.5 first-of-type:pt-5">
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+    <WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+  </div>
+</div>

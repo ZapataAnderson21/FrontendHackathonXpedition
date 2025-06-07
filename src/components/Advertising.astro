@@ -1,0 +1,54 @@
+<section class="relative w-full mx-auto md:mt-6 pt-4 px-8 md:pt-0">
+  <div class="relative flex items-center justify-center lg:h-48">
+    <img id="carousel-img" class="h-[80%] lg:h-40 object-cover rounded" src="/publicidad.jpg" alt="Publicidad" />
+  </div>
+  <div class="flex justify-center mt-2 mb-4 space-x-2 py-4" id="dots-container"></div>
+</section>
+
+<script type="module" is:inline>
+	let current = 0;
+	const images = [
+		'/publicidad.jpg',
+		'/publicidad2.jpg',
+		'/publicidad3.jpg',
+		'/publicidad4.jpg',
+	];
+
+	const img = document.getElementById('carousel-img');
+	const dotsContainer = document.getElementById('dots-container');
+
+	function show(n) {
+		current = n;
+		img.src = images[n];
+		updateDots();
+	}
+
+	function updateDots() {
+		const dots = dotsContainer.querySelectorAll('button');
+		dots.forEach((dot, i) => {
+			dot.classList.toggle('bg-[rgb(6,96,253)]', i === current);
+			dot.classList.toggle('bg-gray-400', i !== current);
+			dot.classList.toggle('w-4', i === current);
+		});
+	}
+
+	window.addEventListener('DOMContentLoaded', () => {
+		// Mostrar imagen inicial
+		show(current);
+
+		// Crear puntos
+		images.forEach((_, index) => {
+			const dot = document.createElement('button');
+			dot.className = 'w-2 h-2 rounded-full bg-gray-400 transition-all duration-100';
+			dot.onclick = () => show(index);
+			dotsContainer.appendChild(dot);
+		});
+		updateDots();
+
+		// Autoplay
+		setInterval(() => {
+			current = (current + 1) % images.length;
+			show(current);
+		}, 5000);
+	});
+</script>
