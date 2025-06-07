@@ -1,25 +1,28 @@
 ---
-import { Icon } from 'astro-icon/components';
+import Bell from "../icons/Bell.svg";
+import Logo from "../icons/Logo.svg";
+import Student from "../icons/Student.svg";
+import Chevron from "../icons/ChevronDown.svg";
+import Menu from "../icons/Menu.svg";
 ---
 
-
-<section class="header flex flex-row items-center justify-center bg-gray-100 w-full fixed">
-  <header class="flex flex-row items-center justify-between bg-white md:px-4 w-full h-14 md:h-16">
-    <div class="md:hidden w-14 p-3.5 bg-[#000f37] flex flex-col items-center justify-center text-white">
-      <svg viewBox="0 0 24 24" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+<section class="bg-white flex flex-row items-center justify-between pr-5 md:px-10 sticky h-14 md:h-18">
+  <a href="/" class="p-2 hidden md:block"><Logo/></a>
+  <div class="w-fit h-full flex items-center justify-center md:hidden gap-x-4">
+    <a href="" class="bg-[#000f37] w-14 h-14 flex flex-row items-center justify-center"><Menu class="size-7 text-white"/></a>
+    <a href="/" class="p-2"><Logo/></a>
+  </div>
+  <div class="md:flex flex-row items-center justify-between gap-4 hidden">
+    <Bell class="size-6 "/>
+    <div class="my-1 flex h-8 w-[0.5px] bg-black"></div>
+    <div class="flex flex-row items-center justify-center gap-4">
+      <div class="flex flex-col items-end justify-center">
+        <p class="text-sm">Hola, <strong>Leonardo</strong></p>
+        <p class="text-xs text-gray-500">Estudiante</p>
+      </div>
+      <Student class="size-10" />
+      <Chevron class="size-5"/>
     </div>
-    <a href="/"><img src="/logo-utp.svg" alt="UTP" height="32" class="ml-xxlg" loading="lazy" style="max-height: 2.4rem;"></a>
-    <div class="flex flex-row items-center justify-center cursor-pointer">
-      <Icon name="Bell" />
-    </div>
-  </header>
+  </div>
+  <Bell class="size-6 md:hidden"/>
 </section>
-
-<style>
-  .header {
-		grid-area: header;
-		position: sticky;
-		top: 0;
-		z-index: 20;
-	}
-</style>

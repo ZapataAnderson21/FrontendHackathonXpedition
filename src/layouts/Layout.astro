@@ -1,21 +1,23 @@
 ---
-import Sidebar from '../components/Sidebar.astro';
-import Header from '../components/Header.astro';
+import Sidebar from "../components/Sidebar.astro";
+import Header from "../components/Header.astro";
 ---
-
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="stylesheet" href="/src/styles/global.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>UTP+class</title>
 	</head>
 	<body class="bg-[rgb(239,246,255)] text-black w-full body">
 		<Header />
@@ -26,12 +28,12 @@ import Header from '../components/Header.astro';
 
 <style>
 	.body {
-		font-family: 'Lato', sans-serif;
+		font-family: "Lato", sans-serif;
 		font-weight: 400;
 		display: grid;
 		grid-template-columns: 88px 1fr;
 		grid-template-rows: 74px 1fr;
-		grid-template-areas: 
+		grid-template-areas:
 			"sidebar header"
 			"sidebar main";
 		min-height: 100vh;
@@ -41,13 +43,14 @@ import Header from '../components/Header.astro';
 		.body {
 			grid-template-columns: 1fr;
 			grid-template-rows: auto 1fr;
-			grid-template-areas: 
+			grid-template-areas:
 				"header"
 				"main";
 		}
 	}
 
-	slot, main {
+	slot,
+	main {
 		grid-area: main;
 	}
 </style>
