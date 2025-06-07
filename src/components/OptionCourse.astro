@@ -1,9 +1,16 @@
 ---
-const { name } = Astro.props;
+interface Props {
+  name: string;
+  link?: string;
+}
+
+const { name, link } = Astro.props;
 ---
 
-<div tabindex="0" class="flex flex-col group">
-  <div class="px-4 py-3 cursor-pointer group-focus:border-b-3 group-focus:border-[#0661fc]">
-    <p class="font-extrabold text-[#4f6168]">{name}</p>
+<a href={link}>
+  <div tabindex="0" class="flex flex-col group">
+    <div class="px-4 py-3 cursor-pointer group-focus:border-b-3 group-focus:border-[#0661fc]">
+      <p class="font-extrabold text-[#4f6168]">{name}</p>
+    </div>
   </div>
-</div>
+</a>
