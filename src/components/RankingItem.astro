@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components"
+
+interface Props {
+  position: number
+  name: string
+  points: number
+}
+
+const { position, name, points } = Astro.props;
+
+let iconColor = "text-white";
+if (position === 1) iconColor = "text-[#d3af37]";
+else if (position === 2) iconColor = "text-[#bcc6cc]";
+else if (position === 3) iconColor = "text-[#ce8946]";
+
+---
+
+<div class="px-4 py-3 flex flex-row justify-between bg-white rounded-md">
+  <div class="flex items-center w-56">
+    <span class="flex items-center font-extrabold text-2xl h-full px-3">{position}</span>
+    <span class="flex items-center p-4">{name}</span>
+  </div>
+  <div class="flex items-center p-4 font-extrabold">{points} puntos</div>
+  <div class="flex items-center">
+  <Icon name="Crown" class=`w-8 h-8 ${iconColor}` />
+  </div>
+</div>

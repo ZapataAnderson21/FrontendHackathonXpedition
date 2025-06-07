@@ -77,14 +77,41 @@ const importanceOptions = importance ? "hidden": "flex";
       <span class="font-bold">Desde: 24/03/25 a las 12:00 a.m.</span>
       <span class="font-bold">Hasta: 24/03/25 a las 12:00 a.m.</span>
     </div>
-    <div class={`${importanceOptions} flex-row items-center justify-center gap-4`}>
-      <div class="rounded-full border-2 border-[#07d4cf] text-[#07d4cf]  hover:bg-[rgba(7,212,208,0.1)] hover:scale-[105%] transition-all duration-100 p-1">
+    <div class={`${importanceOptions} importance-group flex-row items-center justify-center gap-4`}>
+      <div tabindex="0" class="importance-up rounded-full border-2 border-[#07d4cf] text-[#07d4cf] p-1 hover:bg-[rgba(7,212,208,0.1)] transition-all duration-100 cursor-pointer">
         <Icon name="UpArrow" class="w-6 h-6" />
       </div>
-      <div class="rounded-full border-2 border-[#e04c65] text-[#e04c65] p-1 hover:bg-[rgba(224,76,101,0.1)] hover:scale-[105%] transition-all duration-100">
+      <div tabindex="0" class="importance-down rounded-full border-2 border-[#e04c65] text-[#e04c65] p-1 hover:bg-[rgba(224,76,101,0.1)] transition-all duration-100 cursor-pointer">
         <Icon name="DropArrow" class="w-6 h-6" />
       </div>
     </div>
 
+
+
   </div>
 </div>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", () => {
+    const groups = document.querySelectorAll(".importance-group");
+
+    groups.forEach(group => {
+      const upBtn = group.querySelector(".importance-up");
+      const downBtn = group.querySelector(".importance-down");
+
+      const activeClassUp = "bg-[rgba(7,212,208,0.35)]";
+      const activeClassDown = "bg-[rgba(224,76,101,0.35)]";
+
+      upBtn?.addEventListener("click", () => {
+        upBtn.classList.add(activeClassUp);
+        downBtn.classList.remove(activeClassDown);
+      });
+
+      downBtn?.addEventListener("click", () => {
+        downBtn.classList.add(activeClassDown);
+        upBtn.classList.remove(activeClassUp);
+      });
+    });
+  });
+</script>
+
