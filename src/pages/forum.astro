@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro"
+import HeaderCourse from "../components/HeaderCourse.astro"
+import ForumList from "../components/ForumList.astro"
+
+---
+
+<Layout>
+  <main class="w-full px-8">
+    <HeaderCourse />
+    <div class="flex flex-col gap-4 py-4 ">
+      <div class="pt-4">
+        <div class="flex flex-row gap-2"><h1 class="font-bold text-xl">Todos los foros </h1><span class="text-xl text-[#000f37] font-extrabold">(18)</span></div>
+        <div class="flex flex-row gap-2 items-center justify-between">
+          <div><span class="font-bold">Se listarán todos los foros</span>, las que suman para tu promedio final se indicarán como <span class="font-bold">calificadas</span> y las que no se indicarán como <span class="font-bold">no calificadas</span>.</div>
+          <div class="flex flex-row gap-2 items-center">
+            <label for="status-filter" class="text-sm font-bold flex-1/2">Filtrar por estado</label>
+            <div class="bg-white rounded border border-black px-4 py-2 w-full flex-1/2">
+              <select  name="status-filter" id="status-filter">
+                <option value="all">Todos</option>
+                <option value="graded">Programada</option>
+                <option value="ungraded">Por entregar</option>
+                <option value="completed">Entregada</option>
+                <option value="not-completed">Vencida</option>
+              </select>
+          </div>
+          </div>
+        </div>
+        <ForumList />
+      </div>
+      
+      
+    </div>
+  </main>
+</Layout>

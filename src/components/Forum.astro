@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import SubForum from "./SubForum.astro";
+
+interface Props {
+  numberWeek: string;
+  forumType?: number
+}
+
+const { numberWeek, forumType } = Astro.props;
+
+---
+
+
+<div>
+  <div class="flex flex-row justify-between bg-white border-l-8 border-[#0045ba] rounded-sm py-4 px-5 shadow-md cursor-pointer hover:bg-gray-50">
+    <p class="text-xl font-bold">{numberWeek}</p>
+    <div class="flex items-center justify-center">
+      <Icon name="DropArrow" class="w-7 h-full" />
+    </div>
+  </div>
+  <div class="flex flex-col py-4">
+    <SubForum name="Tema 01" typeForum="Calificado" />
+    <SubForum name="Tema 02" typeForum="No Calificado" />
+    <SubForum name="Tema 03" typeForum="Calificado" />
+  </div>
+</div>
