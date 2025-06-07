@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+
+<section class="header flex flex-row items-center justify-center bg-gray-100 w-full fixed">
+  <header class="flex flex-row items-center justify-between bg-white md:px-4 w-full h-14 md:h-16">
+    <div class="md:hidden w-14 p-3.5 bg-[#000f37] flex flex-col items-center justify-center text-white">
+      <svg viewBox="0 0 24 24" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H20M4 18H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </div>
+    <a href="/"><img src="/logo-utp.svg" alt="UTP" height="32" class="ml-xxlg" loading="lazy" style="max-height: 2.4rem;"></a>
+    <div class="flex flex-row items-center justify-center cursor-pointer">
+      <Icon name="Bell" />
+    </div>
+  </header>
+</section>
+
+<style>
+  .header {
+		grid-area: header;
+		position: sticky;
+		top: 0;
+		z-index: 20;
+	}
+</style>

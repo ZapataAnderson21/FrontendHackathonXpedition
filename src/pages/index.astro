@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseCard from '../components/CourseCard.astro';
+import WeekActivity from '../components/WeekActivity.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<Layout>
+	<main class="w-full">
+		<section class="relative w-full mx-auto md:mt-6 pt-4 px-8 md:pt-0">
+			<div class="relative flex items-center justify-center lg:h-48">
+				<img id="carousel-img" class="h-[80%] lg:h-40 object-cover rounded" src="/publicidad.jpg" alt="Publicidad" />
+			</div>
+			<div class="flex justify-center mt-2 mb-4 space-x-2 py-4" id="dots-container"></div>
+		</section>
+
+		<section class="flex flex-col lg:grid lg:grid-cols-[1fr,1fr,1fr] items-start justify-center w-full p-6 lg:px-12 lg:py-0 lg:gap-4">
+			
+			<div class="flex flex-col w-full lg:min-w-sm 2xl:min-w-lg lg:col-start-3 lg:col-end-4 lg:row-start-1">
+
+				<div class="flex flex-row items-center justify-between bg-[rgb(42,50,71)] shadow-[rgba(0,0,0,0.4)] shadow-md text-white font-bold 
+										w-full px-6 py-[11px] rounded-md lg:justify-start lg:rounded-none lg:rounded-tl lg:rounded-tr lg:gap-6 lg:shadow-none">
+					<div class="hidden w-8 h-full lg:block cursor-pointer">
+						<Icon name="WA-Icon" />
+					</div>
+					<p>Actividades Semanales</p>
+					<div class="block w-6 lg:hidden">
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#ffffff"></path> </g></svg>
+					</div>
+				</div>
+				<div class="hidden lg:flex flex-col p-4 bg-white h-full rounded-bl rounded-br gap-2.5 first-of-type:pt-5">
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+					<WeekActivity typeActivity='Foro no calificado' subType='Foro de Consultas' course='CALIDAD DE SERVICIO DE TI' date='25/05/2025' time='11:59 PM' />
+				</div>
+			</div>
+
+			<div class=" flex flex-col w-full h-full mt-10 lg:mt-0 lg:col-start-1 lg:col-end-2 lg:row-start-1">
+				<section class="flex flex-col w-full md:flex-row md:items-center items-center justify-center pb-6">
+					<h1 class="text-gray-800 font-extrabold w-full text-left md:self-center mb-4">Mis cursos</h1>				
+					<div class="flex flex-col md:flex-row md:items-center md:justify-end md:gap-2 w-full items-left">
+						<p class="text-[14px]">Filtrar por</p>
+						<div class="border border-gray-600 px-4 py-[8px] rounded bg-white text-gray-500 text-[14px]">Periodo actual</div>
+					</div>
+				</section>
+
+				<section class="flex flex-col gap-4 pb-6">
+					<p class="font-extrabold text-gray-800 w-full border-b border-gray-800 pb-4">2025 - Ciclo 1 Marzo PREG (001) (Actual)</p>
+					<div class="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3  gap-4 py-6">
+						<CourseCard name="Calidad de servicio de TI" section="37218" mode="Virtual en vivo" progressPercentage={12} />
+						<CourseCard name="Contabilidad General" section="20669" mode="Virtual en vivo" progressPercentage={32} />
+						<CourseCard name="Diseño e Implementación de Arquitectura Empresarial" section="54317" mode="Virtual en vivo" progressPercentage={17} />
+						<CourseCard name="Formación para la Empleabilidad" section="34231" mode="Virtual 24/7" progressPercentage={20} />
+						<CourseCard name="Gestión de Riesgos Informáticos" section="37819" mode="Virtual en vivo" progressPercentage={13} />
+						<CourseCard name="Curso Inteligencia de Negocios" section="34012" mode="Virtual en vivo" progressPercentage={11} />
+						<CourseCard name="Planeamiento Estratégico de las Tics" section="37107" mode="Virtual en vivo" progressPercentage={13} />
+					</div>
+				</section>
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<script type="module" is:inline>
+	let current = 0;
+	const images = [
+		'/publicidad.jpg',
+		'/publicidad2.jpg',
+		'/publicidad3.jpg',
+		'/publicidad4.jpg',
+	];
+
+	const img = document.getElementById('carousel-img');
+	const dotsContainer = document.getElementById('dots-container');
+
+	function show(n) {
+		current = n;
+		img.src = images[n];
+		updateDots();
+	}
+
+	function updateDots() {
+		const dots = dotsContainer.querySelectorAll('button');
+		dots.forEach((dot, i) => {
+			dot.classList.toggle('bg-[rgb(6,96,253)]', i === current);
+			dot.classList.toggle('bg-gray-400', i !== current);
+		});
+	}
+
+	window.addEventListener('DOMContentLoaded', () => {
+		// Mostrar imagen inicial
+		show(current);
+
+		// Crear puntos
+		images.forEach((_, index) => {
+			const dot = document.createElement('button');
+			dot.className = 'w-2 h-2 rounded-full bg-gray-400';
+			dot.onclick = () => show(index);
+			dotsContainer.appendChild(dot);
+		});
+		updateDots();
+
+		// Autoplay
+		setInterval(() => {
+			current = (current + 1) % images.length;
+			show(current);
+		}, 5000);
+	});
+</script>

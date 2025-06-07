@@ -1,0 +1,39 @@
+---
+import OptionSidebar from "./OptionSidebar.astro";
+---
+
+<aside class="hidden w-[88px] bg-[#000f37] md:flex md:flex-col md:items-center h-screen top-0 justify-between">
+
+  <div class="w-full">
+    <OptionSidebar svg="Menu" link="#"/>
+
+    <OptionSidebar svg="Book" text="Cursos" link="/course" />
+
+    <OptionSidebar svg="Chat" text="Chat" link="#" />
+
+    <OptionSidebar svg="Calendar" text="Calendario" link=#" />
+
+    <OptionSidebar svg="Help" text="Ayuda" link="#" />
+  </div>
+
+  <div class="border-t border-white w-full">
+    <OptionSidebar svg="Mail" text="Correo UTP" link="#" />
+    <OptionSidebar svg="Biblio" text="UTP+biblio" link="#" />
+
+  </div>
+
+</aside>
+
+
+<style>
+  aside {
+		grid-area: sidebar;
+		position: sticky !important;
+	}
+
+  @media (max-width: 768px) {
+    aside {
+      display: none;
+    }
+  }
+</style>

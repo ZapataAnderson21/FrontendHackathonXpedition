@@ -1,0 +1,46 @@
+---
+
+interface Props {
+	name: string;
+	section: string;
+	mode: string;
+	progressPercentage: number;
+}
+
+const { name, section, mode, progressPercentage = 0 }: Props = Astro.props;
+
+let imageSrc = 'courseImage.png'
+let colorProgress = 'bg-[rgb(15,102,120)]'
+let ml = 'ml-[-16px]'
+
+if(mode === 'Virtual 24/7') {
+	imageSrc = 'asyncCourseImage.png';
+	colorProgress = 'bg-[rgb(178,30,94)]';
+}
+
+if(progressPercentage <= 3) {
+	ml = ''
+}
+
+
+---
+
+<a href="/course">
+	<div class="bg-white rounded shadow-lg h-full">
+		<img class="w-full object-cover" src={imageSrc} alt="Course Logo" />
+		<!-- Barra de progreso -->
+		<div class="flex flex-row relative w-full h-2 bg-gray-white rounded">
+			<div 
+				class={`h-2 ${colorProgress} rounded`}
+				style={`width: ${progressPercentage}%; transition: width 0.3s;`}
+			></div>
+			<div>
+				<p class={`mt-3 ${ml} absolute ${colorProgress} text-[11px] text-white text-center px-1 rounded`}>{progressPercentage}%</p>
+			</div>
+		</div>
+		<div class="py-8 px-6">
+			<p class="font-extrabold text-black text-[14px]">{name}</p>
+			<p class="text-gray-500 text-sm">{section} - {mode}</p>
+		</div>
+	</div>
+</a>

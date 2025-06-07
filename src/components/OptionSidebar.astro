@@ -1,0 +1,19 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  svg: string;
+  text?: string;
+  link?: string;
+}
+
+const { svg, text, link } = Astro.props;
+---
+
+<a href={link}>
+  <div tabindex="0" class="group relative flex flex-col items-center justify-center text-white cursor-pointer py-[20px] w-full transition-colors duration-200 focus:bg-white focus:text-[#000f37]">
+    <div class="absolute w-1 h-full bg-red-600 left-0 hidden group-focus:block"></div>
+    <Icon name={svg} class="w-full h-[28px]" />
+    {text && <p class="text-[12px] font-medium">{text}</p>}
+  </div>
+</a>
