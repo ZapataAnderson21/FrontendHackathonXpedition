@@ -1,0 +1,18 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  svg: string;
+  description: string;
+}
+
+const { svg, description } = Astro.props;
+---
+
+
+<div class="bg-[#000f37] text-white flex flex-row items-start justify-start rounded-sm p-4 gap-4">
+  <div class="flex items-center justify-center w-8 h-8">
+    <Icon name={svg} />
+  </div>
+  <p>{description}</p>
+</div>

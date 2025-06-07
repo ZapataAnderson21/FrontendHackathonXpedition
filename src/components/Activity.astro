@@ -4,10 +4,11 @@ import { Icon } from "astro-icon/components";
 interface Props {
   name: string;
   typeActivity?: string;
+  course?: string;
   isRated?: boolean;
 }
 
-const { name, typeActivity, isRated } = Astro.props;
+const { name, typeActivity, isRated, course } = Astro.props;
 
 let svgIcon = "Notes";
 
@@ -48,9 +49,9 @@ const ratedClass = isRated ? "bg-[#000f37]" : "bg-[#ffab00]";
       <div>
         <Icon name="Book" class="w-6 h-6" />
       </div>
-      <span class="text-sm font-bold">Calidad de Servicio de TI</span>
+      <span class="text-sm font-bold truncate max-w-[130px]" title={course}>{course}</span>
     </div>
-    <div class={`hidden sm:flex flex-row items-center justify-center gap-1 rounded-full ${ratedClass} py-[4px] px-3 text-[12px] font-bold text-white text-center`}>
+    <div class={`hidden sm:flex flex-row items-center justify-center gap-1 rounded-full ${ratedClass} py-[4px] px-3 text-[12px] font-bold text-white text-center w-[96px]`}>
       <p>{ratedText}</p>
     </div>
     <div class="hidden lg:flex flex-col items-end">
