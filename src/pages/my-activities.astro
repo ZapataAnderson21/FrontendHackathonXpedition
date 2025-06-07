@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro"
+import HeaderMyActivities from "../components/HeaderMyActivities.astro"
+import Activity from "../components/Activity.astro"
+import { Icon } from "astro-icon/components"
+
+---
+
+<Layout>
+  <main class="w-full px-8">
+    <HeaderMyActivities />
+    <div class="flex flex-col gap-4 py-4">
+      <div class="flex flex-row flex-wrap items-center justify-between gap-8">
+        <div class="flex flex-row flex-wrap gap-4 md:gap-8 items-center">
+          <div class="flex flex-row gap-2 items-center">
+            <label for="status-filter" class="text-sm font-bold flex-1/2">Filtrar por cursos</label>
+            <div class="bg-white rounded border border-black px-4 py-2 w-full flex-1/2">
+              <select class="cursor-pointer"  name="status-filter" id="status-filter">
+                <option value="all">Todos</option>
+                <option value="graded">Programada</option>
+                <option value="ungraded">Por entregar</option>
+                <option value="completed">Entregada</option>
+                <option value="not-completed">Vencida</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-row gap-2 items-center">
+            <label for="type-filter" class="text-sm font-bold flex-1/2">Filtrar por tipo</label>
+            <div class="bg-white rounded border border-black px-4 py-2 w-full flex-1/2">
+              <select class="cursor-pointer" name="type-filter" id="type-filter">
+                <option value="all">Todos</option>
+                <option value="graded">Programada</option>
+                <option value="ungraded">Por entregar</option>
+                <option value="completed">Entregada</option>
+                <option value="not-completed">Vencida</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-row items-center justify-end w-full lg:w-auto lg:justify-center gap-4">
+          <div class="flex flex-row-reverse items-center gap-2">
+            <span class="text-[#07d4cf] font-bold">Importante</span>
+            <div class="rounded-full border-2 border-[#07d4cf] text-[#07d4cf]  hover:bg-[rgba(7,212,208,0.1)] hover:scale-[105%] transition-all duration-100 p-1 cursor-pointer">
+              <Icon name="UpArrow" class="w-6 h-6" />
+            </div>
+          </div>
+          <div class="flex flex-row-reverse items-center gap-2">
+            <span class="text-[#e04c65] font-bold">No importante</span>
+            <div class="rounded-full border-2 border-[#e04c65] text-[#e04c65] hover:bg-[rgba(224,76,101,0.1)] hover:scale-[105%] transition-all duration-100 p-1 cursor-pointer">
+              <Icon name="DropArrow" class="w-6 h-6" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <Activity name="Hola" typeActivity="General" isRated={true} />
+      <Activity name="Actividad 1" typeActivity="Foro de discusión" isRated={false} />
+      <Activity name="Actividad 2" typeActivity="Tarea" isRated={true} />
+      <Activity name="Actividad 3" typeActivity="Examen" isRated={false} />
+      <Activity name="Actividad 4" typeActivity="Proyecto" isRated={true} />
+    </div>
+  </main>
+</Layout>
