@@ -9,14 +9,11 @@ import icon from 'astro-icon';
 
 import svgr from 'vite-plugin-svgr';
 
-import nodeAdapter from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
 
   output: 'server',
-
-  adapter: nodeAdapter({ mode: 'standalone' }),
 
   integrations: [react(), icon()],
 
