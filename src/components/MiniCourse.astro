@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  name: string;
+  schedule: string;
+  location: string;
+  mode: "Virtual 24/7" | "Virtual en Vivo" | "Presencial";
+}
+
+let colorMode = "#126279";
+
+switch (Astro.props.mode) {
+  case "Virtual 24/7":
+    colorMode = "#981657";
+    break;
+  case "Virtual en Vivo":
+    colorMode = "#bb4c01";
+    break;
+  default:
+    colorMode = "#126279";
+    break;
+}
+
+const { name, schedule, location, mode } = Astro.props;
+
+---
+
+<div class="flex flex-col border-2 border-gray-800 gap-2 p-4 shadow-lg bg-white">
+  <div class="flex items-center justify-start gap-2 mb-2 px-4 p-2 rounded-2xl max-w-fit" style={`background-color: ${colorMode};`}>
+    <Icon name="Progress" class="w-3 h-3 text-white" />
+    <p class="text-sm font-bold text-white">{mode}</p>
+  </div>
+  <div>
+    <p class="font-bold">Curso: {name}</p>
+  </div>
+  <div>
+    <p>{schedule}</p>
+  </div>
+  <div class="flex items-center gap-2">
+    <Icon name="Location" class="w-6 h-6 text-black" />
+    <p>Ubicación: {location}</p>
+  </div>
+</div>

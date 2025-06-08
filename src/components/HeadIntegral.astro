@@ -1,0 +1,24 @@
+---
+import MiniCourse from './MiniCourse.astro';
+
+
+---
+
+
+<section>
+  <div class="flex flex-row justify-between items-center">
+    <div>
+      <h1 class="text-4xl font-extrabold">Clases del día - Lunes 09 de Junio</h1>
+    </div>
+    <div>
+      <h2 class="text-4xl font-extrabold">Semana 02</h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-6">
+    <MiniCourse name="Calidad de Servicio de TI" schedule="09:00 - 10:00" location="C501" mode="Virtual 24/7" />
+    <MiniCourse name="Desarrollo Web" schedule="10:00 - 11:00" location="B401" mode="Virtual en Vivo" />
+    <MiniCourse name="Bases de Datos" schedule="11:00 - 12:00" location="A803" mode="Presencial" />
+  </div>
+
+</section>

@@ -1,0 +1,121 @@
+---
+import Sidebar from "../components/Sidebar.astro";
+import "../styles/global.css";
+import HeaderIntegral from "../components/HeaderIntegral.astro";
+import HeadIntegral from "../components/HeadIntegral.astro";
+import WeekActIntegral from "../components/WeekActIntegral.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900&display=swap"
+			rel="stylesheet"
+		/>
+		<meta name="generator" content={Astro.generator} />
+		<title>UTP+Integral</title>
+	</head>
+	<body class="relative bg-[rgb(239,246,255)] text-black w-full body">
+		<HeaderIntegral />
+		<Sidebar />
+    <div class="p-8 flex flex-col gap-8">
+      <HeadIntegral />
+      <WeekActIntegral />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Seguimiento y apoyo -->
+      <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4">Seguimiento y apoyo</h2>
+        <div class=" grid grid-cols-2 space-y-4 gap-4">
+          <div class="flex flex-col gap-2 items-center justify-center border-2 p-4 h-full">
+            <div class="bg-gray-800 text-white px-4 py-2 rounded font-bold w-fit">Contabilidad General</div>
+          <p>¿Cómo se clasifican y registran las transacciones en el libro diario, y por qué este proceso es vital para el control financiero de cualquier organización?</p>
+          <button class="mt-2 bg-blue-900 text-white px-4 py-1 rounded hover:bg-blue-800">Conoce más</button>
+          </div>
+
+          <div class="flex flex-col gap-2 items-center justify-center border-2 p-4 h-full ">
+            <div class="bg-green-300 text-black px-4 py-2 rounded font-bold w-fit mt-6">Calidad de Servicio de TI</div>
+          <p>Explora cómo los indicadores clave (KPIs) permiten evaluar y mejorar los servicios TI. ¿Qué tan eficiente puede volverse una organización midiendo su atención al usuario?</p>
+          <button class="mt-2 bg-blue-900 text-white px-4 py-1 rounded hover:bg-blue-800">Conoce más</button>
+          </div>
+
+          <div class="flex flex-col gap-2 items-center justify-center border-2 p-4 h-full">
+            <div class="bg-yellow-300 text-black px-4 py-2 rounded font-bold w-fit mt-6">Gestión de Riesgos Informáticos</div>
+          <p>Sabes cómo detectar vulnerabilidades antes de que se conviertan en amenazas.</p>
+          </div>
+
+          <div class="flex flex-col gap-2 items-center justify-center border-2 p-4 h-full">
+            <div class="bg-pink-500 text-white px-4 py-2 rounded font-bold w-fit mt-6">Diseño e Implementación de Arquitectura Empresarial</div>
+            <p>Sabes cómo mapear procesos críticos para alinear tecnología con estrategia.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consejería Estudiantil -->
+      <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-bold mb-4">Consejería Estudiantil</h2>
+        <div class="space-y-6">
+          <div class="border border-red-300 rounded-lg p-4 shadow-md">
+            <h3 class="text-red-600 font-bold mb-2">El manejo del estrés</h3>
+            <p class="text-sm text-gray-700">Vorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus...</p>
+          </div>
+          <div class="border border-blue-200 rounded-lg p-4 shadow-md">
+            <h3 class="text-blue-900 font-bold mb-2">Taller - ¿Qué es un libro de contabilidad y cómo crearlo?</h3>
+            <p class="text-sm text-gray-700">Vorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus...</p>
+          </div>
+          <div class="border border-red-300 rounded-lg p-4 shadow-md">
+            <div>
+              <h3 class="text-red-600 font-bold mb-2">El manejo del estrés</h3>
+              <div>
+                <Icon name="Healt" class="w-6 h-6 text-red-600" />
+              </div>
+            </div>
+            <p class="text-sm text-gray-700">Vorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus...</p>
+          </div>
+          <div class="border border-blue-200 rounded-lg p-4 shadow-md">
+            <h3 class="text-blue-900 font-bold mb-2">Taller - ¿Qué es un libro de contabilidad y cómo crearlo?</h3>
+            <p class="text-sm text-gray-700">Vorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+		<slot />
+	</body>
+</html>
+
+<style>
+	.body {
+		font-family: "Lato", sans-serif;
+		font-weight: 400;
+		display: grid;
+		grid-template-columns: 88px 1fr;
+		grid-template-rows: 74px 1fr;
+		grid-template-areas:
+			"sidebar header"
+			"sidebar main";
+		min-height: 100vh;
+	}
+
+	@media (max-width: 768px) {
+		.body {
+			grid-template-columns: 1fr;
+			grid-template-rows: auto 1fr;
+			grid-template-areas:
+				"header"
+				"main";
+		}
+	}
+
+	slot,
+	main {
+		grid-area: main;
+	}
+</style>

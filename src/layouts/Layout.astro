@@ -1,8 +1,8 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
-import Header from "../components/Header.astro";
 import Chronometer from "../components/Chronometer.tsx";
 import "../styles/global.css";
+import HeaderIntegral from "../components/HeaderIntegral.astro";
 ---
 
 <!doctype html>
@@ -21,7 +21,7 @@ import "../styles/global.css";
 		<title>UTP+class</title>
 	</head>
 	<body class="relative bg-[rgb(239,246,255)] text-black w-full body">
-		<Header />
+		<HeaderIntegral />
 		<Sidebar />
 		<Chronometer client:load />
 		<slot />

@@ -1,0 +1,25 @@
+---
+
+import WAMini from "./WAMini.astro"
+
+---
+
+
+
+<div class="flex flex-row flex-wrap items-center justify-between bg-[rgb(42,50,71)] shadow-[rgba(0,0,0,0.4)] shadow-md text-white font-bold 
+            w-full px-6 py-[11px] rounded-md lg:justify-start lg:rounded-none lg:rounded-tl lg:rounded-tr lg:gap-6 lg:shadow-none">
+  <div class="hidden w-8 h-full lg:block cursor-pointer">
+    <svg fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M3.71,16.29a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21,1,1,0,0,0-.21.33,1,1,0,0,0,.21,1.09,1.15,1.15,0,0,0,.33.21.94.94,0,0,0,.76,0,1.15,1.15,0,0,0,.33-.21,1,1,0,0,0,.21-1.09A1,1,0,0,0,3.71,16.29ZM7,8H21a1,1,0,0,0,0-2H7A1,1,0,0,0,7,8ZM3.71,11.29a1,1,0,0,0-1.09-.21,1.15,1.15,0,0,0-.33.21,1,1,0,0,0-.21.33.94.94,0,0,0,0,.76,1.15,1.15,0,0,0,.21.33,1.15,1.15,0,0,0,.33.21.94.94,0,0,0,.76,0,1.15,1.15,0,0,0,.33-.21,1.15,1.15,0,0,0,.21-.33.94.94,0,0,0,0-.76A1,1,0,0,0,3.71,11.29ZM21,11H7a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2ZM3.71,6.29a1,1,0,0,0-.33-.21,1,1,0,0,0-1.09.21,1.15,1.15,0,0,0-.21.33.94.94,0,0,0,0,.76,1.15,1.15,0,0,0,.21.33,1.15,1.15,0,0,0,.33.21,1,1,0,0,0,1.09-.21,1.15,1.15,0,0,0,.21-.33.94.94,0,0,0,0-.76A1.15,1.15,0,0,0,3.71,6.29ZM21,16H7a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></g></svg>
+  </div>
+  <p>Actividades Semanales</p>
+  <div class="block w-6 lg:hidden">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2929 4.29289C12.6834 3.90237 13.3166 3.90237 13.7071 4.29289L20.7071 11.2929C21.0976 11.6834 21.0976 12.3166 20.7071 12.7071L13.7071 19.7071C13.3166 20.0976 12.6834 20.0976 12.2929 19.7071C11.9024 19.3166 11.9024 18.6834 12.2929 18.2929L17.5858 13H4C3.44772 13 3 12.5523 3 12C3 11.4477 3.44772 11 4 11H17.5858L12.2929 5.70711C11.9024 5.31658 11.9024 4.68342 12.2929 4.29289Z" fill="#ffffff"></path> </g></svg>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 flex-wrap p-4 rounded-bl rounded-br gap-2.5 first-of-type:pt-5">
+  <WAMini course="Calidad de Servicio de TI" waType="Foro no calificado" status="No entregado" date="25/05/06" time="11:59 PM"/>
+  <WAMini course="Desarrollo Web" waType="Examen" status="Entregado" date="25/05/06" time="11:59 PM"/>
+  <WAMini course="Bases de Datos" waType="Tarea" status="No entregado" date="25/05/06" time="11:59 PM"/>
+  <WAMini course="Calidad de Servicio de TI" waType="Proyecto" status="Entregado" date="25/05/06" time="11:59 PM"/>
+</div>
