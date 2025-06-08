@@ -1,0 +1,517 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .channel-gradient-1 { background: linear-gradient(135deg, #ff6b6b, #ee5a24); }
+        .channel-gradient-2 { background: linear-gradient(135deg, #4ecdc4, #44bd87); }
+        .channel-gradient-3 { background: linear-gradient(135deg, #ffa726, #ff7043); }
+        .channel-gradient-4 { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
+        .channel-gradient-5 { background: linear-gradient(135deg, #5d4e75, #4a3c5a); }
+        .channel-gradient-6 { background: linear-gradient(135deg, #0f3460, #16537e); }
+
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .message-bubble {
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .notification-enter {
+            animation: notificationSlide 0.5s ease-out;
+        }
+
+        @keyframes notificationSlide {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+        }
+
+        .input-focus {
+            transition: all 0.3s ease;
+        }
+
+        .input-focus:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+    </style>
+    <div class="min-h-screen bg-gray-50 p-4">
+        <div class="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-4 h-full">
+            <!-- Sidebar -->
+            <div class="w-full lg:w-80 flex flex-col gap-4 order-2 lg:order-1">
+                <!-- Canales Section -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between cursor-pointer" id="canales-toggle">
+                            <h2 class="text-lg font-semibold text-gray-900">Canales</h2>
+                            <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" id="canales-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-2" id="canales-content">
+                        <div class="space-y-2">
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-red-400 transition-colors" data-channel="contabilidad">
+                                <h3 class="font-medium text-gray-900">Contabilidad General</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">9</span>
+                            </div>
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-green-400 transition-colors" data-channel="calidad">
+                                <h3 class="font-medium text-gray-900">Calidad de servicio TI</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">1</span>
+                            </div>
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-yellow-400 transition-colors" data-channel="riesgos">
+                                <h3 class="font-medium text-gray-900">Gestión de Riesgos Informáticos</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">3</span>
+                            </div>
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-pink-400 transition-colors" data-channel="inteligencia">
+                                <h3 class="font-medium text-gray-900">Inteligencia de negocios</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">4</span>
+                            </div>
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-amber-800 transition-colors" data-channel="empleabilidad">
+                                <h3 class="font-medium text-gray-900">Formación para la Empleabilidad</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">2</span>
+                            </div>
+                            <div class="channel-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-cyan-900 transition-colors" data-channel="arquitectura">
+                                <h3 class="font-medium text-gray-900">Diseño e Implementación de Arquitectura empresarial</h3>
+                                <span class="bg-red-600 text-white text-xs font-medium px-2 py-1 rounded-full">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grupos Section -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between cursor-pointer" id="grupos-toggle">
+                            <h2 class="text-lg font-semibold text-gray-900">Grupos</h2>
+                            <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" id="grupos-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <button class="flex items-center gap-1 text-blue-600 font-medium mt-2 hover:text-blue-700 transition-colors" id="new-group-btn">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            <span>Nuevo</span>
+                        </button>
+                    </div>
+                    <div class="p-2" id="grupos-content">
+                        <div class="space-y-2">
+                            <div class="group-item flex items-center justify-between p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-l-4 border-blue-400 transition-colors" data-group="midudevs">
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-gray-900">Los Midudevs</h3>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        <strong>Anderson:</strong> Hola, ¿cómo estás?
+                                    </p>
+                                </div>
+                                <span class="text-xs text-gray-400">10 Dic.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Section -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <div class="p-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between cursor-pointer" id="chat-toggle">
+                            <h2 class="text-lg font-semibold text-gray-900">Chat</h2>
+                            <svg class="w-5 h-5 text-gray-400 transition-transform duration-200" id="chat-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="flex gap-2 mt-2">
+                            <button class="flex items-center gap-1 text-blue-600 font-medium hover:text-blue-700 transition-colors" id="new-chat-btn">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <span>Nuevo</span>
+                            </button>
+                            <select class="border border-gray-300 rounded-md px-2 py-1 text-sm flex-1" id="chat-filter">
+                                <option value="all">Todos</option>
+                                <option value="my-channels">Mis Canales</option>
+                                <option value="my-favorites">Mis Favoritos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="p-2" id="chat-content">
+                        
+                        <div class="space-y-2">
+                            <div class="chat-item flex items-center gap-3 p-3 hover:bg-gray-50 cursor-pointer rounded-lg border-b border-gray-100 transition-colors" data-user="anderson">
+                                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                                    A
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-gray-900">Anderson David Zapata Ascencio</h3>
+                                    <p class="text-sm text-gray-500 mt-1">Hola, ¿cómo estás?</p>
+                                </div>
+                                <span class="text-xs text-gray-400">10 Dic.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="flex-1 bg-white rounded-lg shadow-sm overflow-hidden flex flex-col order-1 lg:order-2 min-h-[600px] lg:min-h-[80vh]">
+                <!-- Chat Header -->
+                <div class="flex items-center justify-between p-4 border-b border-gray-200 border-l-4 border-red-500">
+                    <div class="flex items-center gap-3">
+                        <h1 class="text-lg font-semibold text-gray-900" id="current-chat-title">Contabilidad General</h1>
+                        <button class="text-blue-600 hover:text-blue-700 transition-colors" id="share-btn">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors" id="search-btn">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"></path>
+                            </svg>
+                        </button>
+                        <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors" id="options-btn">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Messages Area -->
+                <div class="flex-1 overflow-y-auto p-4 space-y-4" id="messages-container">
+                    <div class="message flex items-start gap-3">
+                        <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                            A
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-1">
+                                <h4 class="font-medium text-gray-900">Anderson Zapata Asencio</h4>
+                                <span class="text-xs text-gray-400">18:10</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, sed, illo suscipit illum pariatur quis itaque deserunt non, reiciendis veritatis aliquid repudiandae amet numquam asperiores rem libero voluptas quod? Obcaecati?
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="border-t border-gray-200 p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex-1 relative">
+                            <input
+                                    type="text"
+                                    placeholder="Escribe un mensaje..."
+                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    id="message-input"
+                            />
+                            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors" id="attach-btn">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors font-medium" id="send-btn">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 1024 1024">
+                                <path d="M981.333 81.067c0-4.267 0-8.533-4.267-12.8 0 0 0-4.267 0-4.267 0-4.267-4.267-8.533-8.533-12.8s-8.533-4.267-12.8-8.533c0 0-4.267 0-4.267 0-4.267 0-8.533 0-12.8-4.267 0 4.267 0 4.267 0 4.267-4.267 0-8.533 0-12.8 4.267l-853.333 298.667c-17.067 4.267-29.867 17.067-29.867 38.4 0 17.067 8.533 34.133 25.6 42.667l366.933 162.133 162.133 366.933c8.533 17.067 21.333 25.6 38.4 25.6 0 0 0 0 0 0 17.067 0 34.133-12.8 38.4-29.867l298.667-853.333c8.533-4.267 8.533-8.533 8.533-17.067 0 4.267 0 4.267 0 0zM776.533 187.733l-315.733 315.733-260.267-115.2 576-200.533zM635.733 823.467l-115.2-260.267 315.733-315.733-200.533 576z"></path>
+                            </svg>
+                            <span class="hidden sm:inline">Enviar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar sections
+        function toggleSection(toggleId, contentId, arrowId) {
+            const toggle = document.getElementById(toggleId);
+            const content = document.getElementById(contentId);
+            const arrow = document.getElementById(arrowId);
+
+            toggle.addEventListener('click', () => {
+                content.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
+            });
+        }
+
+        toggleSection('canales-toggle', 'canales-content', 'canales-arrow');
+        toggleSection('grupos-toggle', 'grupos-content', 'grupos-arrow');
+        toggleSection('chat-toggle', 'chat-content', 'chat-arrow');
+
+        // Handle channel selection
+        document.querySelectorAll('.channel-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active state from all items
+                document.querySelectorAll('.channel-item').forEach(i => i.classList.remove('bg-blue-50'));
+                // Add active state to clicked item
+                item.classList.add('bg-blue-50');
+
+                // Update chat title
+                const title = item.querySelector('h3').textContent;
+                document.getElementById('current-chat-title').textContent = title;
+
+                // Clear and add sample messages
+                loadChannelMessages(item.dataset.channel);
+            });
+        });
+
+        // Handle group selection
+        document.querySelectorAll('.group-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.group-item').forEach(i => i.classList.remove('bg-blue-50'));
+                item.classList.add('bg-blue-50');
+
+                const title = item.querySelector('h3').textContent;
+                document.getElementById('current-chat-title').textContent = title;
+
+                loadGroupMessages(item.dataset.group);
+            });
+        });
+
+        // Handle direct chat selection
+        document.querySelectorAll('.chat-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.chat-item').forEach(i => i.classList.remove('bg-blue-50'));
+                item.classList.add('bg-blue-50');
+
+                const title = item.querySelector('h3').textContent;
+                document.getElementById('current-chat-title').textContent = title;
+
+                loadDirectMessages(item.dataset.user);
+            });
+        });
+
+        // Send message functionality
+        const messageInput = document.getElementById('message-input');
+        const sendBtn = document.getElementById('send-btn');
+        const messagesContainer = document.getElementById('messages-container');
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add message to chat
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message flex items-start gap-3 justify-end';
+            messageElement.innerHTML = `
+                <div class="flex-1 max-w-xs sm:max-w-md">
+                    <div class="flex items-center gap-2 mb-1 justify-end">
+                        <span class="text-xs text-gray-400">${new Date().toLocaleTimeString('es-ES', {hour: '2-digit', minute: '2-digit'})}</span>
+                        <h4 class="font-medium text-gray-900">Tú</h4>
+                    </div>
+                    <p class="text-sm text-gray-600 bg-blue-500 text-white rounded-lg p-3">${message}</p>
+                </div>
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    T
+                </div>
+            `;
+
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messageInput.value = '';
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Load sample messages for different contexts
+        function loadChannelMessages(channel) {
+            const messages = {
+                contabilidad: [
+                    { user: 'Anderson Zapata', time: '18:10', message: 'Buenos días, tengo una duda sobre el registro de facturas pendientes.' },
+                    { user: 'María García', time: '18:15', message: 'Hola Anderson, ¿podrías ser más específico? ¿Te refieres al asiento contable?' },
+                    { user: 'Anderson Zapata', time: '18:16', message: 'Sí, exactamente. No estoy seguro de qué cuentas usar.' }
+                ],
+                calidad: [
+                    { user: 'Carlos Mendez', time: '14:30', message: 'El servidor principal está presentando lentitud.' },
+                    { user: 'Ana López', time: '14:32', message: 'Ya lo revisé, parece ser un problema de base de datos.' }
+                ]
+            };
+
+            updateMessagesContainer(messages[channel] || []);
+        }
+
+        function loadGroupMessages(group) {
+            const messages = {
+                midudevs: [
+                    { user: 'Anderson', time: '10:15', message: 'Hola, ¿cómo estás?' },
+                    { user: 'Miguel', time: '10:20', message: '¡Hola! Todo bien, ¿y tú qué tal?' },
+                    { user: 'David', time: '10:25', message: 'Buenos días chicos, ¿listos para el proyecto?' }
+                ]
+            };
+
+            updateMessagesContainer(messages[group] || []);
+        }
+
+        function loadDirectMessages(user) {
+            const messages = {
+                anderson: [
+                    { user: 'Anderson David Zapata Ascencio', time: '18:10', message: 'Hola, ¿cómo estás?' },
+                    { user: 'Anderson David Zapata Ascencio', time: '18:12', message: '¿Tienes tiempo para revisar el documento que te envié?' }
+                ]
+            };
+
+            updateMessagesContainer(messages[user] || []);
+        }
+
+        function updateMessagesContainer(messages) {
+            messagesContainer.innerHTML = '';
+            messages.forEach(msg => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message flex items-start gap-3';
+                messageElement.innerHTML = `
+                    <div class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        ${msg.user.charAt(0)}
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h4 class="font-medium text-gray-900">${msg.user}</h4>
+                            <span class="text-xs text-gray-400">${msg.time}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">${msg.message}</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(messageElement);
+            });
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Filter functionality
+        document.getElementById('chat-filter').addEventListener('change', (e) => {
+            const filter = e.target.value;
+            const chatItems = document.querySelectorAll('.chat-item');
+
+            chatItems.forEach(item => {
+                switch(filter) {
+                    case 'all':
+                        item.style.display = 'flex';
+                        break;
+                    case 'my-channels':
+                        item.style.display = item.dataset.type === 'channel' ? 'flex' : 'none';
+                        break;
+                    case 'my-favorites':
+                        item.style.display = item.dataset.favorite ? 'flex' : 'none';
+                        break;
+                }
+            });
+        });
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize with default channel
+        document.querySelector('.channel-item').click();
+
+        // Add some interactive features
+        document.getElementById('share-btn').addEventListener('click', () => {
+            showNotification('Enlace copiado al portapapeles');
+        });
+
+        document.getElementById('new-group-btn').addEventListener('click', () => {
+            showNotification('Función crear grupo próximamente');
+        });
+
+        document.getElementById('new-chat-btn').addEventListener('click', () => {
+            showNotification('Función nuevo chat próximamente');
+        });
+    </script>
+</Layout>
