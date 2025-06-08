@@ -1,1 +1,1 @@
-export const ApiPath = "http://144.22.210.226:8080/";
+export const ApiPath = "http://localhost:8080/";
