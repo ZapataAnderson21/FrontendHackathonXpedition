@@ -30,7 +30,8 @@ export default function TaskSection({ taskName, description, typeTask, dueDate, 
   }
 
   return (
-    <div className="flex flex-col bg-gray-100 rounded-br-sm rounded-bl-sm px-8  py-[10px] first-of-type:pt-4 last-of-type:pb-4">
+    <a href="/task">
+      <div className="flex flex-col bg-gray-100 rounded-br-sm rounded-bl-sm px-8  py-[10px] first-of-type:pt-4 last-of-type:pb-4">
   <div className="flex flex-row justify-between items-center w-full bg-white h-full py-4 px-5 rounded-md border-b-[1px] border-gray-300 cursor-pointer hover:bg-gray-50 shadow-sm gap-4">
     <div className="flex flex-row gap-3 items-center">
       <div className="w-4 flex items-start">
@@ -55,5 +56,6 @@ export default function TaskSection({ taskName, description, typeTask, dueDate, 
     </div>
   </div>
 </div>
+    </a>
   );
 }
