@@ -4,7 +4,53 @@ import HeaderMyActivities from "../components/HeaderMyActivities.astro"
 import Activity from "../components/Activity"
 import { Icon } from "astro-icon/components"
 import Description from "../components/Description.astro"
+import { ApiPath } from "../utils/apiPath"
+
+const studentId = 1
+
+// 1. Obtener cursos del estudiante
+const coursesRes = await fetch(`${ApiPath}student-courses/by-student/${studentId}`)
+const courses = await coursesRes.json()
+
+type Course = {
+  courseId: number;
+  courseTitle: string;
+}
+
+// 2. Para cada curso, obtener unidades
+const allUnits = await Promise.all(
+  (courses as Course[]).map(async (course: Course) => {
+    const unitsRes = await fetch(`${ApiPath}units/by-course/${course.courseId}`)
+    const units = await unitsRes.json()
+    return units.map((unit: any) => ({ ...unit, courseTitle: course.courseTitle }))
+  })
+)
+const flatUnits = allUnits.flat()
+
+// 3. Obtener student-tasks del estudiante
+const studentTasksRes = await fetch(`${ApiPath}student-tasks/by-student-id/${studentId}`)
+const studentTasks = await studentTasksRes.json()
+
+// Crear un Set con los taskId ya asignados al estudiante
+const taskIdsOfStudent = new Set(studentTasks.map((st: any) => st.taskId))
+
+// 4. Para cada unidad, obtener tareas
+const allTasks = await Promise.all(
+  flatUnits.map(async (unit) => {
+    const tasksRes = await fetch(`${ApiPath}tasks/by-unit/${unit.id}`)
+    const tasks = await tasksRes.json()
+    return tasks
+      .filter((task: any) => !taskIdsOfStudent.has(task.id)) // Filtrar tareas ya entregadas
+      .map((task: any) => ({
+        ...task,
+        courseTitle: unit.courseTitle
+      }))
+  })
+)
+
+const flatTasks = allTasks.flat()
 ---
+
 
 <Layout>
   <main class="w-full px-8 first-of-type:pt-4">
@@ -55,11 +101,18 @@ import Description from "../components/Description.astro"
         </div>
       </div>
 
-      <Activity name="Hola" typeActivity="GENERAL" course="Calidad de Servicio de TI" isRated={true} />
-      <Activity name="Actividad 1" typeActivity="FORUM" course="Contabilidad General" isRated={false} />
-      <Activity name="Actividad 2" typeActivity="ASSIGNMENT" course="Inteligencia de Negocios" isRated={true} />
-      <Activity name="Actividad 3" typeActivity="EXAM" course="Planeamiento Estratégico de las TICs" isRated={false} />
-      <Activity name="Actividad 4" typeActivity="PROJECT" course="Calidad de Servicio de TI" isRated={true} />
+      {flatTasks.map((task) => (
+        <Activity
+          client:load
+          id = {task.id}
+          name={task.title} 
+          typeActivity={task.typeTask} 
+          course={task.courseTitle} 
+          isRated={task.points > 0}
+          dueDate={task.dueDate}
+          points={task.points}  
+        />
+      ))}
     </div>
   </main>
 </Layout>

@@ -1,22 +1,105 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ApiPath } from "../utils/apiPath";
 
 interface ActivityProps {
+  id: number;
   name: string;
   typeActivity: string;
   course: string;
   isRated?: boolean;
+  dueDate?: string;
+  points?: number;
   importance?: "Importante" | "No Importante";
   urgency?: boolean;
 }
 
+type ImportanceState =
+  | "URGENT_AND_IMPORTANT"
+  | "NOT_URGENT_BUT_IMPORTANT"
+  | "URGENT_BUT_NOT_IMPORTANT"
+  | "NOT_URGENT_AND_NOT_IMPORTANT";
+
 export default function Activity({
+  id,
   name,
   typeActivity,
   course,
   isRated = false,
+  dueDate,
+  points,
   importance = "No Importante",
-  urgency = false
+  urgency = false,
 }: ActivityProps) {
+
+  const studentId = 1;
+  // Estado local para la importancia seleccionada
+  // Se guarda como el estado completo ("URGENT_AND_IMPORTANT" etc)
+  const [selectedImportance, setSelectedImportance] = useState<ImportanceState>(() => {
+    if (importance === "Importante") {
+      return urgency ? "URGENT_AND_IMPORTANT" : "NOT_URGENT_BUT_IMPORTANT";
+    } else {
+      return urgency ? "URGENT_BUT_NOT_IMPORTANT" : "NOT_URGENT_AND_NOT_IMPORTANT";
+    }
+  });
+
+  // Calcula si la tarea es urgente según dueDate y la fecha actual
+  // (Puedes ajustar el criterio, aquí un ejemplo: si faltan menos de 3 días es urgente)
+  useEffect(() => {
+    if (!dueDate) return;
+
+    const due = new Date(dueDate);
+    const now = new Date();
+    const diffDays = (due.getTime() - now.getTime()) / (1000 * 60 * 60 * 24);
+
+    const isUrgent = diffDays <= 3;
+
+    // Actualizamos la urgencia pero respetando la importancia ya seleccionada
+    setSelectedImportance(prev => {
+      const isImportant = prev === "URGENT_AND_IMPORTANT" || prev === "NOT_URGENT_BUT_IMPORTANT";
+      if (isImportant && isUrgent) return "URGENT_AND_IMPORTANT";
+      if (isImportant && !isUrgent) return "NOT_URGENT_BUT_IMPORTANT";
+      if (!isImportant && isUrgent) return "URGENT_BUT_NOT_IMPORTANT";
+      return "NOT_URGENT_AND_NOT_IMPORTANT";
+    });
+  }, [dueDate]);
+
+  // Función para manejar la selección IMPORTANTE o NO IMPORTANTE
+  const handleSelectImportance = (importanceSelected: "Importante" | "No Importante") => {
+    // Según la urgencia actual, definimos el estado completo
+    const isUrgent = selectedImportance === "URGENT_AND_IMPORTANT" || selectedImportance === "URGENT_BUT_NOT_IMPORTANT";
+
+    let newImportanceState: ImportanceState;
+
+    if (importanceSelected === "Importante") {
+      newImportanceState = isUrgent ? "URGENT_AND_IMPORTANT" : "NOT_URGENT_BUT_IMPORTANT";
+    } else {
+      newImportanceState = isUrgent ? "URGENT_BUT_NOT_IMPORTANT" : "NOT_URGENT_AND_NOT_IMPORTANT";
+    }
+
+    setSelectedImportance(newImportanceState);
+
+    // POST al API
+    if (studentId && id) {
+      fetch(`${ApiPath}student-tasks`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          studentId,
+          taskId: id,
+          importance: newImportanceState
+        })
+      }).catch(err => {
+        console.error("Error posting importance:", err);
+      });
+    }
+  };
+
+  // Botones con estilos para selected y focus
+  // IMPORTANTE = rojo, NO IMPORTANTE = gris
+  const isImportantSelected = selectedImportance === "URGENT_AND_IMPORTANT" || selectedImportance === "NOT_URGENT_BUT_IMPORTANT";
+  const isNotImportantSelected = selectedImportance === "URGENT_BUT_NOT_IMPORTANT" || selectedImportance === "NOT_URGENT_AND_NOT_IMPORTANT";
+
+
   let svgIcon: React.ReactNode = "Notes";
 
   switch (typeActivity) {
@@ -34,6 +117,27 @@ export default function Activity({
       break;
     default:
       svgIcon = <svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g> <path d="M0,218.241l20.913,15.158l118.904,86.199v132.866l103.404-57.892l92.52,67.064L512,50.363L0,218.241z M57.326,227.202L442.817,100.81L156.609,299.193L57.326,227.202z M166.202,407.459v-68.74l53.494,38.786L166.202,407.459z M324.494,420.906L172.776,310.92L455.69,114.808L324.494,420.906z"></path> </g> </g></svg>;
+  }
+
+  let typeActivitySpanish: string = "";
+  
+  switch (typeActivity?.toUpperCase()) {
+    case "QUIZ":
+      typeActivitySpanish = "Cuestionario";
+      break;
+    case "ASSIGNMENT":
+      typeActivitySpanish = "Tarea";
+      break;
+    case "EXAM":
+      typeActivitySpanish = "Examen";
+      break;
+
+    case "PROJECT":
+      typeActivitySpanish = "Proyecto";
+      break;
+
+    default:
+      typeActivitySpanish = "Actividad";
   }
 
   let borderColor = "border-gray-300";
@@ -80,11 +184,10 @@ export default function Activity({
       <div className={`flex flex-row justify-between items-center w-full border-l-4 ${borderColor} shadow-2xl ${shadowColor} bg-white h-full py-4 px-5 gap-4 rounded-sm cursor-pointer hover:bg-gray-50`}>
         <div className="flex flex-row gap-3 items-center">
           <div className="w-4 flex items-start">
-            {/* Reemplaza esto con tu SVG correspondiente */}
             <div className="w-4 h-4 text-[#4a5565]">{svgIcon}</div>
           </div>
-          <div className="flex flex-col gap-0.5 sm:w-40 md:w-40 lg:w-28">
-            <span className="text-gray-500 text-sm">{typeActivity}</span>
+          <div className="flex flex-col gap-0.5 sm:w-40 md:w-40 lg:w-50">
+            <span className="text-gray-500 text-sm">{typeActivitySpanish}</span>
             <p className="font-bold">{name}</p>
           </div>
         </div>
@@ -98,16 +201,38 @@ export default function Activity({
           <p>{ratedText}</p>
         </div>
         <div className="hidden lg:flex flex-col items-end">
-          <span className="font-bold">Desde: 24/03/25 a las 12:00 a.m.</span>
-          <span className="font-bold">Hasta: 24/03/25 a las 12:00 a.m.</span>
+          <span className="font-bold">Hasta: {dueDate}</span>
         </div>
         <div className={`${importanceOptions} importance-group flex-row items-center justify-center gap-4`}>
-          <div tabIndex={0} className="importance-up rounded-full border-2 border-[#07d4cf] text-[#07d4cf] p-1 hover:bg-[rgba(7,212,208,0.1)] transition-all duration-100 cursor-pointer">
-            <div className="w-6 h-6 text-[#07d4cf]"><svg fill="currentColor" width="24" height="24" viewBox="0 0 1024 1024"><path d="M797.867 610.133l-256-256c-17.067-17.067-42.667-17.067-59.733 0l-256 256c-17.067 17.067-17.067 42.667 0 59.733s42.667 17.067 59.733 0l226.133-226.133 226.133 226.133c8.533 8.533 21.333 12.8 29.867 12.8s21.333-4.267 29.867-12.8c17.067-17.067 17.067-42.667 0-59.733z"></path></svg></div>
-          </div>
-          <div tabIndex={0} className="importance-down rounded-full border-2 border-[#e04c65] text-[#e04c65] p-1 hover:bg-[rgba(224,76,101,0.1)] transition-all duration-100 cursor-pointer">
-            <div className="w-6 h-6 text-[#e04c65]"><svg fill="currentColor" width="24" height="24" viewBox="0 0 1024 1024"><path d="M797.867 354.133c-17.067-17.067-42.667-17.067-59.733 0l-226.133 226.133-226.133-226.133c-17.067-17.067-42.667-17.067-59.733 0s-17.067 42.667 0 59.733l256 256c8.533 8.533 21.333 12.8 29.867 12.8s21.333-4.267 29.867-12.8l256-256c17.067-17.067 17.067-42.667 0-59.733z"></path></svg></div>
-          </div>
+          <div className="mt-4 flex space-x-4">
+          {/* Botón IMPORTANTE */}
+          <button
+            type="button"
+            aria-pressed={isImportantSelected}
+            onClick={() => handleSelectImportance("Importante")}
+            className={`p-2 rounded border transition 
+              ${isImportantSelected ? "border-red-600 bg-red-100 shadow-lg" : "border-gray-300 bg-white"} 
+              focus:outline-none focus:ring-2 focus:ring-red-500`}
+          >
+            {/* Aquí tu SVG para IMPORTANTE, ejemplo: */}
+            <svg fill="currentColor" width="24" height="24" viewBox="0 0 1024 1024"><path d="M797.867 610.133l-256-256c-17.067-17.067-42.667-17.067-59.733 0l-256 256c-17.067 17.067-17.067 42.667 0 59.733s42.667 17.067 59.733 0l226.133-226.133 226.133 226.133c8.533 8.533 21.333 12.8 29.867 12.8s21.333-4.267 29.867-12.8c17.067-17.067 17.067-42.667 0-59.733z"></path></svg>
+            <span className="sr-only">Marcar como Importante</span>
+          </button>
+
+          {/* Botón NO IMPORTANTE */}
+          <button
+            type="button"
+            aria-pressed={isNotImportantSelected}
+            onClick={() => handleSelectImportance("No Importante")}
+            className={`p-2 rounded border transition
+              ${isNotImportantSelected ? "border-gray-600 bg-gray-100 shadow-lg" : "border-gray-300 bg-white"} 
+              focus:outline-none focus:ring-2 focus:ring-gray-500`}
+          >
+            {/* Aquí tu SVG para NO IMPORTANTE, ejemplo: */}
+            <svg fill="currentColor" width="24" height="24" viewBox="0 0 1024 1024"><path d="M797.867 354.133c-17.067-17.067-42.667-17.067-59.733 0l-226.133 226.133-226.133-226.133c-17.067-17.067-42.667-17.067-59.733 0s-17.067 42.667 0 59.733l256 256c8.533 8.533 21.333 12.8 29.867 12.8s21.333-4.267 29.867-12.8l256-256c17.067-17.067 17.067-42.667 0-59.733z"></path></svg>
+            <span className="sr-only">Marcar como No Importante</span>
+          </button>
+        </div>
         </div>
       </div>
     </div>
