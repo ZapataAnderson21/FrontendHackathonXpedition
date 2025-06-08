@@ -9,12 +9,8 @@ import icon from 'astro-icon';
 
 import svgr from 'vite-plugin-svgr';
 
-
 // https://astro.build/config
 export default defineConfig({
-
-  output: 'static',
-
   integrations: [react(), icon()],
 
   vite: {
