@@ -13,7 +13,7 @@ import svgr from 'vite-plugin-svgr';
 // https://astro.build/config
 export default defineConfig({
 
-  output: 'server',
+  output: 'static',
 
   integrations: [react(), icon()],
 
