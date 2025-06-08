@@ -6,15 +6,12 @@ import HeaderCourse from "../components/HeaderCourse.astro";
 import Description from "../components/Description.astro";
 import { ApiPath } from "../utils/apiPath";
 
-// Recuperamos el `courseId` desde `Astro.props`
 const { courseId } = Astro.props;
 
-// Validación de courseId, asignamos 1 si no está definido o es inválido
 let courseIdn = courseId && !isNaN(courseId) ? parseInt(courseId) : 1;
 
 const fetchUnits = async () => {
   try {
-    // Mostramos en consola el `courseId` que se usará en la consulta
     console.log("Fetching units for courseId:", courseIdn);
 
     const res = await fetch(`${ApiPath}units/by-course/${courseIdn}`);
