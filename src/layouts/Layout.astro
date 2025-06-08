@@ -1,6 +1,7 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import Chronometer from "../components/Chronometer.tsx";
 import "../styles/global.css";
 ---
 
@@ -19,9 +20,10 @@ import "../styles/global.css";
 		<meta name="generator" content={Astro.generator} />
 		<title>UTP+class</title>
 	</head>
-	<body class="bg-[rgb(239,246,255)] text-black w-full body">
+	<body class="relative bg-[rgb(239,246,255)] text-black w-full body">
 		<Header />
 		<Sidebar />
+		<Chronometer client:load />
 		<slot />
 	</body>
 </html>

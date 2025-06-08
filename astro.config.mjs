@@ -7,11 +7,13 @@ import tailwindcss from '@tailwindcss/vite';
 
 import icon from 'astro-icon';
 
+import svgr from 'vite-plugin-svgr';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), icon()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss(), svgr()]
   }
 });
