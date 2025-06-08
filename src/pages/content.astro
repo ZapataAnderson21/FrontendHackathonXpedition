@@ -9,7 +9,6 @@ import { ApiPath } from "../utils/apiPath";
 const { courseId } = Astro.props;
 
 let courseIdn = courseId && !isNaN(courseId) ? parseInt(courseId) : 1;
-
 const fetchUnits = async () => {
   try {
     console.log("Fetching units for courseId:", courseIdn);
