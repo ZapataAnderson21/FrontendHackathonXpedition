@@ -1,6 +1,11 @@
 ---
 import { ApiPath } from '../utils/apiPath';
 
+interface Forum {
+    id: number;
+    name: string;
+}
+
 const { numberWeek } = Astro.props;
 const fetchForums = async () => {
     const res = await fetch(`${ApiPath}forums`);
@@ -15,8 +20,8 @@ const forums = await fetchForums();
 <div class="pt-4">
     <h2 class="font-bold text-xl">Foros - {numberWeek}</h2>
     <ul>
-        {forums.map(forum => (
-                <li key={forum.id} class="pt-2">{forum.name}</li>
+        {forums.map((forum: Forum) => (
+                <li class="pt-2">{forum.name}</li>
         ))}
     </ul>
 </div>

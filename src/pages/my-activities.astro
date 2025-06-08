@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import HeaderMyActivities from "../components/HeaderMyActivities.astro"
-import Activity from "../components/Activity.astro"
+import Activity from "../components/Activity"
 import { Icon } from "astro-icon/components"
 import Description from "../components/Description.astro"
 ---
@@ -55,11 +55,11 @@ import Description from "../components/Description.astro"
         </div>
       </div>
 
-      <Activity name="Hola" typeActivity="General" course="Calidad de Servicio de TI" isRated={true} />
-      <Activity name="Actividad 1" typeActivity="Foro de discusión" course="Contabilidad General" isRated={false} />
-      <Activity name="Actividad 2" typeActivity="Tarea" course="Inteligencia de Negocios" isRated={true} />
-      <Activity name="Actividad 3" typeActivity="Examen" course="Planeamiento Estratégico de las TICs" isRated={false} />
-      <Activity name="Actividad 4" typeActivity="Proyecto" course="Calidad de Servicio de TI" isRated={true} />
+      <Activity name="Hola" typeActivity="GENERAL" course="Calidad de Servicio de TI" isRated={true} />
+      <Activity name="Actividad 1" typeActivity="FORUM" course="Contabilidad General" isRated={false} />
+      <Activity name="Actividad 2" typeActivity="ASSIGNMENT" course="Inteligencia de Negocios" isRated={true} />
+      <Activity name="Actividad 3" typeActivity="EXAM" course="Planeamiento Estratégico de las TICs" isRated={false} />
+      <Activity name="Actividad 4" typeActivity="PROJECT" course="Calidad de Servicio de TI" isRated={true} />
     </div>
   </main>
 </Layout>

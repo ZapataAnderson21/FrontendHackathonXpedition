@@ -2,29 +2,31 @@
 import OptionCourse from "./OptionCourse.astro"
 import { Icon } from "astro-icon/components"
 
+const { courseId } = Astro.props;
+
 ---
 
 
-<div class="hidden lg:flex flex-row items-center bg-transparent min-h-[48px] py-2">
-      <a href="/" class="cursor-pointer">
-        <div class="flex flex-row items-center justify-start gap-1.5 py-1 px-5 border-r border-black text-[#0661fc]">
-          <div><Icon name="LeftArrow" /></div>
-          <p class="text-[12px] font-extrabold">Volver a cursos</p>
+<div class=`hidden lg:flex flex-row items-center bg-transparent min-h-[48px] py-2`>
+      <a href=`/` class=`cursor-pointer`>
+        <div class=`flex flex-row items-center justify-start gap-1.5 py-1 px-5 border-r border-black text-[#0661fc]`>
+          <div><Icon name=`LeftArrow` /></div>
+          <p class=`text-[12px] font-extrabold`>Volver a cursos</p>
         </div>
       </a>
-      <div class="flex flex-row items-center  gap-2 py-1 px-4">
-        <p class="text-[#4a4f55] font-bold text-[14px]">Calidad de servicio de TI - Sección 37218</p>
-        <div class="items-center text-[11px] text-[#b3ebfe] font-bold bg-[#0f6778] rounded-full px-3 py-0.5">Virtual en vivo</div>
+      <div class=`flex flex-row items-center  gap-2 py-1 px-4`>
+        <p class=`text-[#4a4f55] font-bold text-[14px]`>Calidad de servicio de TI - Sección 37218</p>
+        <div class=`items-center text-[11px] text-[#b3ebfe] font-bold bg-[#0f6778] rounded-full px-3 py-0.5`>Virtual en vivo</div>
       </div>
     </div>
-    <div class="hidden lg:flex flex-row items-center border-b-1 border-gray-300">
-      <OptionCourse name="Sílabo" link="/silabo" />
-      <OptionCourse name="Contenido" link="/content" />
-      <OptionCourse name="Evaluaciones" link="/evaluations" />
-      <OptionCourse name="Tareas" link="/tasks" />
-      <OptionCourse name="Foros" link="/forum" />
-      <OptionCourse name="Notas" link="/grades" />
-      <OptionCourse name="Anuncios" link="/announcements" />
-      <OptionCourse name="Ranking" link="/ranking" />
-      <OptionCourse name="Zoom" link="/zoom" />
+    <div class=`hidden lg:flex flex-row items-center border-b-1 border-gray-300`>
+      <OptionCourse name=`Sílabo` link=`/silabo/${courseId}` />
+      <OptionCourse name=`Contenido` link=`/content/${courseId}` />
+      <OptionCourse name=`Evaluaciones` link=`/evaluations/${courseId}` />
+      <OptionCourse name=`Tareas` link=`/tasks/${courseId}` />
+      <OptionCourse name=`Foros` link=`/forum/${courseId}` />
+      <OptionCourse name=`Notas` link=`/grades/${courseId}` />
+      <OptionCourse name=`Anuncios` link=`/announcements/${courseId}` />
+      <OptionCourse name=`Ranking` link=`/ranking/${courseId}` />
+      <OptionCourse name=`Zoom` link=`/zoom/${courseId}` />
     </div>

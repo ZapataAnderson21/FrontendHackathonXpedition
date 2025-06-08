@@ -2,6 +2,14 @@
 import CourseCard from './CourseCard.astro';
 import { ApiPath } from "../utils/apiPath";
 
+interface Course {
+  courseId: number;
+  courseTitle: string;
+  courseTypeName: string;
+  mode?: string;
+  progressPercentage?: number;
+}
+
 const studentId = 1;
 
 const fetchCourses = async () => {
@@ -27,13 +35,13 @@ const courses = await fetchCourses();
 
   <div class="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 py-6">
     {courses.length > 0 ? (
-        courses.map((course) => (
+        courses.map((course: Course) => (
             <CourseCard
-                key={course.courseId}
+                key={course.courseId.toString()}
                 courseId={course.courseId}
                 name={course.courseTitle}
-                section={course.courseTypeName}
-                mode={course.mode || 'Presencial'}
+                section={"Asincrónico"}
+                mode={course.courseTypeName}
                 progressPercentage={course.progressPercentage || 0}
             />
     ))

@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeaderCourse from "../../components/HeaderCourse.astro";
+import { ApiPath } from "../../utils/apiPath";
+import WeekTask from "../../components/WeekTask";
+
+export const prerender = false;
+
+interface unit {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const { courseId } =  Astro.params;
+
+let courseIdn = courseId && !isNaN(Number(courseId)) ? parseInt(courseId, 10) : 0;
+const fetchUnits = async () => {
+  try {
+    console.log("Fetching units for courseId:", courseIdn);
+
+    const res = await fetch(`${ApiPath}units/by-course/${courseIdn}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch units");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching units:", error);
+    return [];
+  }
+};
+const units = await fetchUnits();
+---
+
+<Layout>
+  <main class="w-full px-8">
+    <HeaderCourse courseId={courseIdn} />
+    <div class="flex flex-col gap-4 py-6">
+      <div class="flex flex-col col-start-1 xl:col-end-4 gap-4 py-4">
+        <div>
+          <h1 class="font-bold text-xl">Total de unidades ({units.length})</h1>
+          <div class="flex flex-col gap-4 pt-4">
+            {units.length > 0 ? (
+                units.map((unit: unit, index: number) => (
+                    <WeekTask client:load unitId={unit.id.toString()} numberWeek={`Unidad ${unit.title}`} description={unit.description} />
+                ))
+            ) : (
+                <p class="text-gray-500">No hay unidades disponibles en este curso.</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

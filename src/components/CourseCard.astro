@@ -1,15 +1,17 @@
 ---
 
 interface Props {
+	key?: string;
+	courseId: number;
 	name: string;
 	section: string;
 	mode: string;
 	progressPercentage: number;
 }
 
-const { name, section, mode, progressPercentage = 0 }: Props = Astro.props;
+const { courseId, name, section, mode, progressPercentage = 0 }: Props = Astro.props;
 
-let imageSrc = 'courseImage.png'
+let imageSrc = 'asyncCourseImage.png'
 let colorProgress = 'bg-[rgb(15,102,120)]'
 let ml = 'ml-[-16px]'
 
@@ -25,7 +27,7 @@ if(progressPercentage <= 3) {
 
 ---
 
-<a href="/content">
+<a href={`/content/${courseId.toString()}`}>
 	<div class="bg-white rounded shadow-lg h-full">
 		<img class="w-full object-cover" src={imageSrc} alt="Course Logo" />
 		<!-- Barra de progreso -->

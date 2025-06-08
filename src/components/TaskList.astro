@@ -1,9 +1,0 @@
----
-import TaskComponent from './Task.astro';
----
-
-<div class="flex flex-col gap-4 pt-4">
-    {[...Array(18)].map((_, index) => (
-    <TaskComponent numberWeek={`Semana ${(index + 1).toString().padStart(2, '0')}`} />
-    ))}
-</div>
